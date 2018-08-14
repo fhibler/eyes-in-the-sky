@@ -19,9 +19,9 @@ services:
     restart: always
     logging:
       driver: json-file
-        options:
-          max-size: "5m"
-          max-file: "3"
+      options:
+        max-size: "5m"
+        max-file: "3"
   piaware:
     image: "loungefly/raspbian-flightaware"
     container_name: piaware
@@ -34,9 +34,9 @@ services:
       - PIAWARE_FEEDER_ID=
     logging:
       driver: json-file
-        options:
-          max-size: "5m"
-          max-file: "3"
+      options:
+        max-size: "5m"
+        max-file: "3"
     restart: always
   flightradar:
     image: "loungefly/raspbian-flightradar24"
@@ -50,7 +50,7 @@ services:
       - FR24_KEY=
     logging:
       driver: json-file
-        options:
-          max-size: "5m"
-          max-file: "3"
+      options:
+        max-size: "5m"
+        max-file: "3"
     restart: always
