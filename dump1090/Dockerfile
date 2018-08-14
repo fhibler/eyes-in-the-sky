@@ -8,6 +8,7 @@ RUN apt-get update -qy \
     git-core \
     git \
     cmake \
+    sed \
     libusb-1.0.0-dev \
     build-essential \
     pkg-config
@@ -39,10 +40,13 @@ EXPOSE 30104
 
 WORKDIR /root/dump1090
 
+RUN cp gmap.html gmap.html.orig
+RUN sed 's/DUMP_GMAP_KEY/$DUMP_GMAP_KEY/g' gmap.html.orig > gmap.html
+
 COPY ./startdumping.sh startdumping.sh
 RUN chmod +x startdumping.sh
 
 # Update your lat/lon values.
-ENV DUMP_HTTP_PORT="" DUMP_SBS_PORT="" DUMP_LAT="" DUMP_LON="" 
+ENV DUMP_HTTP_PORT="" DUMP_SBS_PORT="" DUMP_LAT="" DUMP_LON=""
 
 CMD ["/root/dump1090/startdumping.sh"]

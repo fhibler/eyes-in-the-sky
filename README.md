@@ -40,6 +40,7 @@ This repo contains the following:
 
     - `DUMP_LAT` - Your latitude
     - `DUMP_LON` - Your longitude
+    - `DUMP_GMAP_KEY` - Your [Google Maps API Key](https://developers.google.com/maps/?hl=de)
     - `PIAWARE_USER` - Your FlightAware.com username
     - `PIAWARE_PASSWORD` - Your FlightAware.com password
     - `PIAWARE_FEEDER_ID` (Optional) - Your feeder id from FlightAware if you already have one

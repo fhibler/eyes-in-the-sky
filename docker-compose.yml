@@ -3,6 +3,8 @@ services:
   dump1090:
     image: "loungefly/raspbian-dump1090"
     build: ./dump1090
+    volumes:
+      - ./dump1090/gmap.html:/root/dump1090/public_html/gmap.html
     container_name: dump1090
     privileged: true
     ports:
@@ -15,6 +17,10 @@ services:
       - DUMP_SBS_PORT=30003
       - DUMP_LAT=49.555
       - DUMP_LON=-124.555
+      - DUMP_GMAP_KEY=
+    restart: always
+    logging:
+      driver: none
   piaware:
     image: "loungefly/raspbian-flightaware"
     container_name: piaware
@@ -27,6 +33,7 @@ services:
       - PIAWARE_USER=username
       - PIAWARE_PASSWORD=password
       - PIAWARE_FEEDER_ID=
+    restart: always
   flightradar:
     image: "loungefly/raspbian-flightradar24"
     container_name: flightradar24
