@@ -3,8 +3,6 @@ services:
   dump1090:
     image: "loungefly/raspbian-dump1090"
     build: ./dump1090
-    volumes:
-      - ./dump1090/gmap.html:/root/dump1090/public_html/gmap.html
     container_name: dump1090
     privileged: true
     ports:
@@ -20,19 +18,25 @@ services:
       - DUMP_GMAP_KEY=
     restart: always
     logging:
-      driver: none
+      driver: json-file
+        options:
+          max-size: "5m"
+          max-file: "3"
   piaware:
     image: "loungefly/raspbian-flightaware"
     container_name: piaware
     build: ./flightaware
-    volumes:
-      - ./flightaware/piaware.conf:/etc/piaware.conf
     environment:
       - PIAWARE_HOST=dump1090
       - PIAWARE_PORT=30005
       - PIAWARE_USER=username
       - PIAWARE_PASSWORD=password
       - PIAWARE_FEEDER_ID=
+    logging:
+      driver: json-file
+        options:
+          max-size: "5m"
+          max-file: "3"
     restart: always
   flightradar:
     image: "loungefly/raspbian-flightradar24"
@@ -44,4 +48,9 @@ services:
       - DUMP1090_HOST=dump1090
       - DUMP1090_PORT=30005
       - FR24_KEY=
+    logging:
+      driver: json-file
+        options:
+          max-size: "5m"
+          max-file: "3"
     restart: always

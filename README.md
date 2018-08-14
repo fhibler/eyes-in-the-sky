@@ -15,7 +15,8 @@ This repo contains the following:
 1. Make sure Docker is installed on your raspberry pi:
 
     ```
-    $ curl -sSL https://get.docker.com | sh
+    $ echo deb [arch=armhf] https://download.docker.com/linux/raspbian stretch stable > /etc/apt/sources.list.d/docker.list
+    $ apt-get update
     ```
 
 2. Clone the repo on your raspberry pi:
@@ -90,14 +91,21 @@ You should be given a key that you can copy and enter into the docker-compose.ym
 
 ## Troubleshooting
 
+- Check the logs for the dump1090 container
+
+    ```
+    $ docker logs dump1090
+    ```
+
+ - Check the logs for the dump1090 container
+
+    ```
+    $ docker logs flightradar24
+    ```
+
 - Check the logs for the piaware container
 
     ```
     $ docker logs piaware
     ```
     
-- Check the logs for the dump1090 container
-
-    ```
-    $ docker logs dump1090
-    ```

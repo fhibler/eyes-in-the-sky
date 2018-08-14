@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:jessie
+FROM resin/rpi-raspbian:stretch
 
 # Import GPG key for the APT repository
 RUN gpg --keyserver pool.sks-keyservers.net --recv-keys 40C430F5 && \

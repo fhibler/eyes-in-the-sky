@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:jessie
+FROM resin/rpi-raspbian:stretch
 ENTRYPOINT []
 
 WORKDIR /root
@@ -40,13 +40,12 @@ EXPOSE 30104
 
 WORKDIR /root/dump1090
 
-RUN cp gmap.html gmap.html.orig
-RUN sed 's/DUMP_GMAP_KEY/$DUMP_GMAP_KEY/g' gmap.html.orig > gmap.html
-
+ENV DUMP_GMAP_KEY=""
+RUN cp public_html/gmap.html gmap.html.orig
 COPY ./startdumping.sh startdumping.sh
 RUN chmod +x startdumping.sh
 
 # Update your lat/lon values.
-ENV DUMP_HTTP_PORT="" DUMP_SBS_PORT="" DUMP_LAT="" DUMP_LON=""
+ENV DUMP_HTTP_PORT="" DUMP_SBS_PORT="" DUMP_LAT="" DUMP_LON="" DUMP_GMAP_KEY=""
 
 CMD ["/root/dump1090/startdumping.sh"]
