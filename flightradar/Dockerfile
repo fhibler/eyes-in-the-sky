@@ -1,7 +1,7 @@
 FROM resin/rpi-raspbian:jessie
 
 # Import GPG key for the APT repository
-RUN gpg --keyserver pgp.mit.edu --recv-keys 40C430F5 && \
+RUN gpg --keyserver pool.sks-keyservers.net --recv-keys 40C430F5 && \
     gpg --armor --export 40C430F5 | apt-key add -
 
 # Add APT repository to the config file, removing older entries if exist
